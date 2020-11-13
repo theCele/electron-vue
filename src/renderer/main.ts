@@ -12,4 +12,6 @@ ipcRenderer.on('pong', (a, b) => {
     console.log(b);
 });
 
+console.log('cele-ee-eexx-ee');
+
 createApp(App).use(store).use(router).mount('#app')
