@@ -1,0 +1,87 @@
+{
+  "name": "electron-vue",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/main/index.js",
+  "scripts": {
+    "start": "npm run build:main && electron ./dist/main/index.js",
+    "build:main": "tsc -p ./tsconfig.main.json",
+    "build:renderer": "vue-cli-service build --dest ./dist/renderer",
+    "build": "set APP_DEV=false && npm run build:main && npm run build:renderer",
+    "serve": "set APP_DEV=true && vue-cli-service serve",
+    "dist": "npm run build && yarn electron-builder",
+    "lint": "vue-cli-service lint"
+  },
+  "build": {
+    "appId": "electron-vue.cns.mk",
+    "productName": "Electron Vue",
+    "copyright": "Copyright © 2020 Cvetko Stavreski CNS dooel",
+    "icon": "dist/renderer/favicon.ico",
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "directories": {
+      "buildResources": "dist",
+      "output": "out"
+    }
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^3.0.0",
+    "vue-class-component": "^8.0.0-0",
+    "vue-router": "^4.0.0-0",
+    "vuex": "^4.0.0-0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/eslint-config-typescript": "^5.0.2",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^7.0.0-0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.2",
+    "electron-builder": "^22.9.1",
+    "typescript": "^4.0.5",
+    "electron": "^10.1.5"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended",
+      "@vue/typescript/recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2020
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
